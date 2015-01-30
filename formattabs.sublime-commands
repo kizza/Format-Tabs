@@ -1,0 +1,16 @@
+[
+	{
+		"caption": "Format Tabs",
+		"command": "format_tabs"
+	},
+	{
+		"caption": "Format Tabs: Settings - Default",
+		"command": "open_file",
+		"args": {"file": "${packages}/Format Tabs/formattabs.sublime-settings"}
+	},
+	{
+		"caption": "Format Tabs: Settings - User",
+		"command": "open_file",
+		"args": {"file": "${packages}/User/formattabs.sublime-settings"}
+	}
+]
