@@ -5,13 +5,6 @@ import pprint
 from datetime import date
 
 
-def var_dump(val):
-    pprint.pprint(val)
-
-
-#
-# Text Commands
-#
 class format_tabs_command(sublime_plugin.TextCommand):
 
     def run(self, edit):
@@ -32,7 +25,7 @@ class format_tabs_command(sublime_plugin.TextCommand):
 
         if syntax == 'python':
             tab_char = ' ' * 4
-        print(tab_char)
+
         while True:
             match = view.find(r'^(\t|\s)+', offset)
             if match:
