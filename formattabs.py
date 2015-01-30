@@ -23,8 +23,10 @@ class format_tabs_command(sublime_plugin.TextCommand):
         line_with_spaces = 0
         tab_char = '\t'
 
+        tabs_to_spaces = view.settings().get('translate_tabs_to_spaces')
+        tab_size = view.settings().get('tab_size')
         if syntax == 'python':
-            tab_char = ' ' * 4
+            tab_char = ' ' * tab_size
 
         while True:
             match = view.find(r'^(\t|\s)+', offset)
@@ -35,14 +37,13 @@ class format_tabs_command(sublime_plugin.TextCommand):
                     line = view.substr(region)
                     tabs = tab_char * line.count(tab_char)
                     spaces = ' ' * line.count(' ')
-                    print(line.count(' '))
                     if line.find('\t') >= 0:
                         if syntax == 'python':
                             spaces = tab_char * line.count('\t')
                         spaces = spaces.replace('\t', tab_char)
                         view.replace(edit, region, tabs + spaces)
                     if line.find(' ') >= 0:
-                        spaces = spaces.replace(' ' * 2, tab_char)
+                        spaces = spaces.replace(' ' * 3, tab_char)
                         spaces = spaces.replace(' ', '')
                         view.replace(edit, region, tabs + spaces)
                         line_with_spaces = line_with_spaces + 1
